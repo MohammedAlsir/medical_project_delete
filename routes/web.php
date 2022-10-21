@@ -49,4 +49,13 @@ Route::namespace('App\Http\Controllers')->middleware('auth')->group(function () 
     route::resource('pharma', 'PharmaController')->middleware('admin');
     route::resource('pharmacy', 'PharmacyController')->middleware('pharma');
     route::resource('medicine', 'MedicineController')->middleware('pharma');
+    route::resource('order', 'OrderController')->middleware('pharma');
+    route::get('/acceptable', 'OrderController@acceptable')->name('acceptable')->middleware('pharma');
+    route::get('/rejected', 'OrderController@rejected')->name('rejected')->middleware('pharma');
+
+    route::get('acceptable/{id}', 'OrderController@order_Acceptance')->name('order.Acceptance')->middleware('pharma');
+    route::get('rejected/{id}', 'OrderController@order_reject')->name('order.reject')->middleware('pharma');
+
+    route::get('report/pharma', 'ReportController@report_pharma')->name('report.pharma')->middleware('admin');
+    route::get('report/medicine', 'ReportController@report_medicine')->name('report.medicine')->middleware('pharma');
 });

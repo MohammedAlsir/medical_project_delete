@@ -17,7 +17,7 @@ class SettingSeeder extends Seeder
     {
         $setting = new Setting();
 
-        $setting->name = '';
+        $setting->name = '  -  ';
         $setting->email = '';
         $setting->phone = '';
         $setting->save();

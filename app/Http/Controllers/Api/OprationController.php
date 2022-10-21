@@ -29,10 +29,12 @@ class OprationController extends Controller
         if (!Medicine::find($request->medicine_id)) {
             return $this->returnMessage(false, 'هذا الدواء غير موجود', 200);
         }
+
         $order = new Order();
         $order->medicine_id = $request->medicine_id;
         $order->status = '1';
         $order->amount = $request->amount;
+        $order->pharma_id = Medicine::find($request->medicine_id)->pharma_id;
         $order->user_id = Auth::user()->id;
         $order->save();
 

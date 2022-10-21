@@ -57,6 +57,27 @@
 
                                 </ul>
                             </li>
+
+                            <li class="nav-item has-treeview  @yield('report_open')">
+                                <a href="#" class="nav-link @yield('report')">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    التقارير
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                                </a>
+                                <ul class="nav nav-treeview" >
+
+                                    <li class="nav-item">
+                                        <a href="{{route('report.pharma')}}" class="nav-link @yield('report_pharma')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>الصيدليات</p>
+                                        </a>
+                                    </li>
+
+
+                                </ul>
+                            </li>
                         @endif
 
                         @if (Auth::user()->level == "2")
@@ -109,16 +130,71 @@
 
                                 </ul>
                             </li>
+
+                            <li class="nav-item has-treeview  @yield('order_open')">
+                                <a href="#" class="nav-link @yield('order')">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    الطلبات
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                                </a>
+                                <ul class="nav nav-treeview" >
+
+                                    <li class="nav-item">
+                                        <a href="{{route('order.index')}}" class="nav-link @yield('order_index')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>الطلبات الجديدة</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('acceptable')}}" class="nav-link @yield('acceptable')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>الطلبات المقبولة</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="{{route('rejected')}}" class="nav-link @yield('rejected')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>الطلبات المرفوضة </p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                             <li class="nav-item has-treeview  @yield('report_open')">
+                                <a href="#" class="nav-link @yield('report')">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    التقارير
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                                </a>
+                                <ul class="nav nav-treeview" >
+
+                                    <li class="nav-item">
+                                        <a href="{{route('report.medicine')}}" class="nav-link @yield('report_medicine')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>الادوية</p>
+                                        </a>
+                                    </li>
+
+
+                                </ul>
+                            </li>
+
                         @endif
 
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{route('setting')}}" class="nav-link @yield('setting')">
                             <i class="nav-icon far fa-calendar-alt"></i>
                             <p>
                                 الاعدادات العامة
                             </p>
                             </a>
-                        </li>
+                        </li> --}}
 
 
                     </ul>

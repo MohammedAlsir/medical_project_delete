@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('status');
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->foreignId('medicine_id')->nullable()->constrained('medicines')->onDelete('cascade');
+            $table->foreignId('pharma_id')->nullable()->constrained('pharmas')->onDelete('cascade');
+
 
             $table->timestamps();
         });
