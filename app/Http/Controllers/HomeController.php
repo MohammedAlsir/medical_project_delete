@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Clinic;
+use App\Models\Company;
+use App\Models\Pharmacy;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +26,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $clinic = Clinic::all();
+        $pharmacy = Pharmacy::all();
+        $company = Company::all();
+        return view('home', compact(
+            "clinic",
+            "pharmacy",
+            "company"
+        ));
     }
 }

@@ -12,7 +12,7 @@
                 <!-- Horizontal Form -->
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title"> تعديل بيانات الصيدلي </h3>
+                        <h3 class="card-title"> تعديل بيانات الصيدلية </h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
@@ -22,9 +22,16 @@
                         <div class="card-body">
 
                             <div class="form-group row">
-                                <label class="col-sm-2 control-label">اسم الصيدلي </label>
+                                <label class="col-sm-2 control-label">اسم الصيدلية </label>
                                 <div class="col-sm-10">
                                     <input required type="text" value="{{$item->name}}" class="form-control" name="name">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 control-label"> الموقع  </label>
+                                <div class="col-sm-10">
+                                    <input required type="text" value="{{$item->address}}" class="form-control" name="address">
                                 </div>
                             </div>
 
@@ -42,12 +49,6 @@
                                 </div>
                             </div>
 
-                             <div class="form-group row">
-                                <label class="col-sm-2 control-label">الكود</label>
-                                <div class="col-sm-10">
-                                    <input required type="text" value="{{$item->code}}" class="form-control" name="code">
-                                </div>
-                            </div>
 
                             <!-- /.card-body -->
                             <div class="card-footer">

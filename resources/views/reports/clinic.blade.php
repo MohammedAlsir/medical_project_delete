@@ -2,7 +2,7 @@
 {{-- @section('title','كل الاقســـــام') --}}
 @section('report_open','menu-open')
 @section('report','active')
-@section('report_medicine','active')
+@section('report_clinic','active')
 
 
 
@@ -14,7 +14,7 @@
 
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">تقارير عن الادوية</h3>
+              <h3 class="card-title">تقارير عن العيادات</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -22,37 +22,26 @@
                 <thead>
                 <tr>
                   <th>#</th>
-                  <th>اسم الدواء </th>
-                  <th> السعر </th>
-                  <th>الكمية المتوفرة </th>
+                  <th>اسم العيادة </th>
+                  <th> الموقع </th>
+                  <th> البريد الالكتروني </th>
 
                   {{-- <th>العمليات</th> --}}
                 </tr>
                 </thead>
                 <tbody>
 
-                    @php
-                        $counter = 0;
-                    @endphp
-                    @foreach ($medicines as $item)
+
+                    @foreach ($clinic as $item)
                         <tr>
                             <td>{{$index++}}</td>
                             <td>{{$item->name}}</td>
-                            <td>{{$item->price}}</td>
-                            <td>{{$item->amount}}</td>
+                            <td>{{$item->address}}</td>
+                            <td>{{$item->user->email}}</td>
 
-                            {{-- <td>{{$item->medicines->count()}}</td> --}}
-
-                            {{-- @php
-                                $counter += $item->medicines->count();
-                            @endphp --}}
                         </tr>
                     @endforeach
 
-                    <tr>
-                        <td colspan="3"> عدد الادوية الكلي</td>
-                        <td>{{$medicines->count()}}</td>
-                    </tr>
 
 
 

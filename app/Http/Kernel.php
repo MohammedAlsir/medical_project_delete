@@ -55,7 +55,7 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
         'add.header' => \App\Http\Middleware\AddHeaders::class,
-        'pharma' => \App\Http\Middleware\Pharma::class,
+        'clinic' => \App\Http\Middleware\Clinic::class,
         'pharmacy' => \App\Http\Middleware\Pharmacy::class,
         'admin' => \App\Http\Middleware\Admin::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,

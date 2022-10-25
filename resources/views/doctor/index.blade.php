@@ -1,8 +1,8 @@
 @extends('layouts.app')
 {{-- @section('title','كل الاقســـــام') --}}
-@section('pharma_open','menu-open')
-@section('pharma','active')
-@section('pharma_index','active')
+@section('doctor_open','menu-open')
+@section('doctor','active')
+@section('doctor_index','active')
 
 
 
@@ -14,7 +14,7 @@
 
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">  الصيدليات</h3>
+              <h3 class="card-title"> الاطباء </h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -22,25 +22,26 @@
                 <thead>
                 <tr>
                   <th>#</th>
-                  <th>اسم الصيدلية </th>
-                  <th>البريد الالكتروني</th>
-                  <th>الموقع</th>
+                  <th>اسم الطبيب </th>
+                  <th> التخصص </th>
+                  <th>سعر المقابلة</th>
                   <th>العمليات</th>
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach ($collection as $item)
+                    @foreach ($doctor as $item)
                         <tr>
                             <td>{{$index++}}</td>
                             <td>{{$item->name}}</td>
-                            <td>{{$item->user->email}}</td>
-                            <td>{{$item->addres}}</td>
+                            <td>{{$item->section}}</td>
+                            <td>{{$item->price}}</td>
+
                             <td>
                                 <div>
-                                    <form  action="{{route('pharma.destroy',$item->id)}}" method="POST">
+                                    <form  action="{{route('doctor.destroy',$item->id)}}" method="POST">
                                         {{ csrf_field()}}
                                         {{ method_field('delete') }}
-                                        <a href="{{route('pharma.edit',$item->id)}}" class="btn btn-primary"> تعديل</a>
+                                        <a href="{{route('doctor.edit',$item->id)}}" class="btn btn-primary"> تعديل</a>
                                         <button type="submit" class="btn btn-danger"></i>&nbsp; حذف</button>
                                     </form>
                                 </div>

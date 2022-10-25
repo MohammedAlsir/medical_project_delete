@@ -21,10 +21,9 @@ class PharmacyController extends Controller
      */
     public function index()
     {
-        $pharma_id = Pharma::where('user_id', Auth::user()->id)->first();
-        $collection = Pharmacy::where('pharma_id', $pharma_id->id)->orderBy('id', 'desc')->get();
+        $pharmacy = Pharmacy::orderBy('id', 'desc')->get();
         $index = 1;
-        return view('pharmacy.index', compact('collection', 'index'));
+        return view('pharmacy.index', compact('pharmacy', 'index'));
     }
 
     /**
@@ -53,13 +52,11 @@ class PharmacyController extends Controller
         $user->save();
 
 
-        $pharma_id = Pharma::where('user_id', Auth::user()->id)->first();
-        $pharma = new Pharmacy();
-        $pharma->name = $request->name;
-        $pharma->code = $request->code;
-        $pharma->user_id = $user->id;
-        $pharma->pharma_id = $pharma_id->id;
-        $pharma->save();
+        $pharmacy = new Pharmacy();
+        $pharmacy->name = $request->name;
+        $pharmacy->address = $request->address;
+        $pharmacy->user_id = $user->id;
+        $pharmacy->save();
 
         toast('تم الاضافة بنجاح', 'success');
         return redirect()->route('pharmacy.index');
@@ -98,7 +95,7 @@ class PharmacyController extends Controller
     {
         $pharmacy =  Pharmacy::find($id);
         $pharmacy->name = $request->name;
-        $pharmacy->code = $request->code;
+        $pharmacy->address = $request->address;
         // $pharma->user_id = $user->id;
 
         $user =  User::find($pharmacy->user_id);

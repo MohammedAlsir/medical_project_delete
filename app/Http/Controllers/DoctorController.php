@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Medicine;
-use App\Models\Pharma;
+use App\Models\Clinic;
+use App\Models\Doctor;
 use App\Traits\Oprations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class MedicineController extends Controller
+class DoctorController extends Controller
 {
     use  Oprations;
 
@@ -19,10 +19,11 @@ class MedicineController extends Controller
      */
     public function index()
     {
-        $pharma_id = Pharma::where('user_id', Auth::user()->id)->first();
-        $collection = Medicine::where('pharma_id', $pharma_id->id)->orderBy('id', 'desc')->get();
+        $clinic = Clinic::where('user_id', Auth::user()->id)->first();
+
+        $doctor = Doctor::where('clinic_id', $clinic->id)->orderBy('id', 'desc')->get();
         $index = 1;
-        return view('medicine.index', compact('collection', 'index'));
+        return view('doctor.index', compact('doctor', 'index'));
     }
 
     /**
@@ -32,7 +33,7 @@ class MedicineController extends Controller
      */
     public function create()
     {
-        return $this->create_date('medicine.create');
+        return $this->create_date('doctor.create');
     }
 
     /**
@@ -43,20 +44,20 @@ class MedicineController extends Controller
      */
     public function store(Request $request)
     {
-        $pharma_id = Pharma::where('user_id', Auth::user()->id)->first();
 
-        $medicine = new Medicine();
-        $medicine->name = $request->name;
-        $medicine->company = $request->company;
-        $medicine->price = $request->price;
-        $medicine->expaire_date = $request->expaire_date;
-        $medicine->amount = $request->amount;
 
-        $medicine->pharma_id = $pharma_id->id;
-        $medicine->save();
+        $clinic = Clinic::where('user_id', Auth::user()->id)->first();
+
+        $doctor = new Doctor();
+        $doctor->name = $request->name;
+        $doctor->section = $request->section;
+        $doctor->price = $request->price;
+        $doctor->clinic_id = $clinic->id;
+
+        $doctor->save();
 
         toast('تم الاضافة بنجاح', 'success');
-        return redirect()->route('medicine.index');
+        return redirect()->route('doctor.index');
     }
 
     /**
@@ -67,6 +68,7 @@ class MedicineController extends Controller
      */
     public function show($id)
     {
+        //
     }
 
     /**
@@ -77,7 +79,7 @@ class MedicineController extends Controller
      */
     public function edit($id)
     {
-        return $this->edit_data(Medicine::class, $id, 'medicine.edit');
+        return $this->edit_data(Doctor::class, $id, 'doctor.edit');
     }
 
     /**
@@ -89,19 +91,14 @@ class MedicineController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $medicine =  Medicine::find($id);
-        $medicine->name = $request->name;
-        $medicine->company = $request->company;
-        $medicine->price = $request->price;
-
-        $medicine->expaire_date = $request->expaire_date;
-        $medicine->amount = $request->amount;
-
-
-        $medicine->save();
+        $doctor =  Doctor::find($id);
+        $doctor->name = $request->name;
+        $doctor->section = $request->section;
+        $doctor->price = $request->price;
+        $doctor->save();
 
         toast('تم التعديل بنجاح', 'success');
-        return redirect()->route('medicine.index');
+        return redirect()->route('doctor.index');
     }
 
     /**
@@ -112,9 +109,11 @@ class MedicineController extends Controller
      */
     public function destroy($id)
     {
-        $medicine =  Medicine::find($id);
-        $medicine->delete();
+        $doctor =  Doctor::find($id);
+        $doctor->delete();
+
+
         toast('تم الحذف بنجاح', 'success');
-        return redirect()->route('medicine.index');
+        return redirect()->route('doctor.index');
     }
 }

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Pharma
+class Clinic
 {
     /**
      * Handle an incoming request.

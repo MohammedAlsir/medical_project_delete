@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PharmaRequest;
-use App\Models\Pharma;
+use App\Models\Clinic;
 use App\Models\User;
 use App\Traits\Oprations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class PharmaController extends Controller
+class ClinicController extends Controller
 {
     use  Oprations;
+
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +19,9 @@ class PharmaController extends Controller
      */
     public function index()
     {
-        return $this->index_data(Pharma::class, 'Pharma.index');
+        $clinic = Clinic::orderBy('id', 'desc')->get();
+        $index = 1;
+        return view('clinic.index', compact('clinic', 'index'));
     }
 
     /**
@@ -29,7 +31,7 @@ class PharmaController extends Controller
      */
     public function create()
     {
-        return $this->create_date('Pharma.create');
+        return $this->create_date('clinic.create');
     }
 
     /**
@@ -38,10 +40,8 @@ class PharmaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PharmaRequest $request)
+    public function store(Request $request)
     {
-
-
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -49,15 +49,15 @@ class PharmaController extends Controller
         $user->level = '2';
         $user->save();
 
-        $pharma = new Pharma();
-        $pharma->name = $request->name;
-        $pharma->addres = $request->addres;
-        $pharma->user_id = $user->id;
-        $pharma->save();
+
+        $clinic = new Clinic();
+        $clinic->name = $request->name;
+        $clinic->address = $request->address;
+        $clinic->user_id = $user->id;
+        $clinic->save();
 
         toast('تم الاضافة بنجاح', 'success');
-        return redirect()->route('pharma.index');
-        // return $this->store_data(Pharma::class, $request, 'pharma.index');
+        return redirect()->route('clinic.index');
     }
 
     /**
@@ -79,7 +79,7 @@ class PharmaController extends Controller
      */
     public function edit($id)
     {
-        return $this->edit_data(Pharma::class, $id, 'Pharma.edit');
+        return $this->edit_data(Clinic::class, $id, 'clinic.edit');
     }
 
     /**
@@ -89,27 +89,23 @@ class PharmaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PharmaRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        // return $this->update_data(Pharma::class, $request, $id, 'pharma.index');
-        $pharma =  Pharma::find($id);
-        $pharma->name = $request->name;
-        $pharma->addres = $request->addres;
+        $clinic =  Clinic::find($id);
+        $clinic->name = $request->name;
+        $clinic->address = $request->address;
         // $pharma->user_id = $user->id;
 
-        $user =  User::find($pharma->user_id);
+        $user =  User::find($clinic->user_id);
         $user->name = $request->name;
         $user->email = $request->email;
         if ($request->password)
             $user->password = Hash::make($request->password);
         $user->save();
-        $pharma->save();
-
-
-
+        $clinic->save();
 
         toast('تم التعديل بنجاح', 'success');
-        return redirect()->route('pharma.index');
+        return redirect()->route('clinic.index');
     }
 
     /**
@@ -120,14 +116,13 @@ class PharmaController extends Controller
      */
     public function destroy($id)
     {
-        $pharma =  Pharma::find($id);
-        $pharma->delete();
+        $clinic =  Clinic::find($id);
+        $clinic->delete();
 
-        $user =  User::find($pharma->user_id);
+        $user =  User::find($clinic->user_id);
         $user->delete();
 
         toast('تم الحذف بنجاح', 'success');
-        return redirect()->route('pharma.index');
-        // return $this->delete_data(Pharma::class, $id, 'pharma.index');
+        return redirect()->route('clinic.index');
     }
 }

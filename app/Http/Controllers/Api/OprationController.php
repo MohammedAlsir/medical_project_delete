@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Clinic;
+use App\Models\Doctor;
 use App\Models\Medicine;
 use App\Models\Order;
 use App\Traits\ApiMessage;
@@ -13,40 +15,18 @@ class OprationController extends Controller
 {
     use ApiMessage;
 
-    public function get_medicine()
+    public function get_clinic()
     {
-        $medicine = Medicine::with('pharma')->where('amount', '>=', '1')->orderBy('id', 'DESC')->get();
+        $clinic = Clinic::orderBy('id', 'DESC')->get();
 
-        return $this->returnData('medicine', $medicine);
+        return $this->returnData('clinic', $clinic);
     }
 
-    public function order(Request $request)
+    public function get_doctor_by_id($id)
     {
-        $data = $request->validate([
-            'medicine_id'     => 'required',
-            'amount'  => 'required'
-        ]);
-        if (!Medicine::find($request->medicine_id)) {
-            return $this->returnMessage(false, 'هذا الدواء غير موجود', 200);
-        }
-
-        $order = new Order();
-        $order->medicine_id = $request->medicine_id;
-        $order->status = '1';
-        $order->amount = $request->amount;
-        $order->pharma_id = Medicine::find($request->medicine_id)->pharma_id;
-        $order->user_id = Auth::user()->id;
-        $order->save();
-
-        return $this->returnData('order', $order);
-    }
-
-    public function get_order()
-    {
-
-        $order = Order::with('medicine')->where('user_id', Auth::user()->id)->get();
+        $doctors = Doctor::where('clinic_id', $id)->orderBy('id', 'DESC')->get();
 
 
-        return $this->returnData('order', $order);
+        return $this->returnData('doctors', $doctors);
     }
 }

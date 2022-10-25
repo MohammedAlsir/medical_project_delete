@@ -2,28 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Clinic;
 use App\Models\Medicine;
 use App\Models\Pharma;
+use App\Models\Pharmacy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller
 {
-    public function report_pharma()
+    public function report_pharmacy()
     {
-        $pharmas = Pharma::all();
+        $pharmacy = Pharmacy::all();
         $index = 1;
-        return view('reports.pharma', compact('pharmas', 'index'));
+        return view('reports.pharmacy', compact('pharmacy', 'index'));
     }
 
-    public function report_medicine()
+    public function report_clinic()
     {
 
-        $pharma_id = Pharma::where('user_id', Auth::user()->id)->first();
-        $medicines = Medicine::where('pharma_id', $pharma_id->id)->orderBy('id', 'desc')->get();
-
-
+        $clinic = Clinic::orderBy('id', 'desc')->get();
         $index = 1;
-        return view('reports.medicine', compact('medicines', 'index'));
+        return view('reports.clinic', compact('clinic', 'index'));
     }
 }

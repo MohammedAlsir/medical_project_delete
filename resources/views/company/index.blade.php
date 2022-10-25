@@ -1,8 +1,8 @@
 @extends('layouts.app')
 {{-- @section('title','كل الاقســـــام') --}}
-@section('medicine_open','menu-open')
-@section('medicine','active')
-@section('medicine_index','active')
+@section('company_open','menu-open')
+@section('company','active')
+@section('company_index','active')
 
 
 
@@ -14,7 +14,7 @@
 
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title"> الادوية</h3>
+              <h3 class="card-title"> شركات التأمين</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -22,29 +22,29 @@
                 <thead>
                 <tr>
                   <th>#</th>
-                  <th>الاسم  </th>
-                  <th>الشركة</th>
-                  <th>تاريخ الانتهاء</th>
-                  <th>سعر الحبة</th>
-                  <th>الكمية</th>
+                  <th>اسم الشركة </th>
+                  <th> الموقع </th>
+                  <th> الهاتف </th>
+                  <th> نوع التأمين </th>
+                  <th>التخفيض</th>
                   <th>العمليات</th>
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach ($collection as $item)
+                    @foreach ($company as $item)
                         <tr>
                             <td>{{$index++}}</td>
                             <td>{{$item->name}}</td>
-                            <td>{{$item->company}}</td>
-                            <td>{{$item->expaire_date}}</td>
-                            <td>{{$item->price}}</td>
-                            <td>{{$item->amount}}</td>
+                            <td>{{$item->address}}</td>
+                            <td>{{$item->phone}}</td>
+                            <td>{{$item->type}}</td>
+                            <td>{{$item->discount}}</td>
                             <td>
                                 <div>
-                                    <form  action="{{route('medicine.destroy',$item->id)}}" method="POST">
+                                    <form  action="{{route('company.destroy',$item->id)}}" method="POST">
                                         {{ csrf_field()}}
                                         {{ method_field('delete') }}
-                                        <a href="{{route('medicine.edit',$item->id)}}" class="btn btn-primary"> تعديل</a>
+                                        <a href="{{route('company.edit',$item->id)}}" class="btn btn-primary"> تعديل</a>
                                         <button type="submit" class="btn btn-danger"></i>&nbsp; حذف</button>
                                     </form>
                                 </div>

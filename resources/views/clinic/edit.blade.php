@@ -1,7 +1,7 @@
 @extends('layouts.app')
 {{-- @section('title','بيانات القسم') --}}
-@section('sections_open','menu-open')
-@section('sections','active')
+@section('clinic_open','menu-open')
+@section('clinic','active')
 @section('content')
 
 <section class="content">
@@ -12,19 +12,26 @@
                 <!-- Horizontal Form -->
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title"> تعديل بيانات الصيدلية </h3>
+                        <h3 class="card-title"> تعديل بيانات العيادة </h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form method="POST" action="{{route('pharma.update',$item->id)}}" class="form-horizontal">
+                    <form method="POST" action="{{route('clinic.update',$item->id)}}" class="form-horizontal">
                         @csrf
                         @method('put')
                         <div class="card-body">
 
                             <div class="form-group row">
-                                <label class="col-sm-2 control-label">اسم الصيدلية </label>
+                                <label class="col-sm-2 control-label">اسم العيادة </label>
                                 <div class="col-sm-10">
                                     <input required type="text" value="{{$item->name}}" class="form-control" name="name">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 control-label"> الموقع  </label>
+                                <div class="col-sm-10">
+                                    <input required type="text" value="{{$item->address}}" class="form-control" name="address">
                                 </div>
                             </div>
 
@@ -42,12 +49,6 @@
                                 </div>
                             </div>
 
-                             <div class="form-group row">
-                                <label class="col-sm-2 control-label">الموقع</label>
-                                <div class="col-sm-10">
-                                    <input required type="text" value="{{$item->addres}}" class="form-control" name="addres">
-                                </div>
-                            </div>
 
                             <!-- /.card-body -->
                             <div class="card-footer">

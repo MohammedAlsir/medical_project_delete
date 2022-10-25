@@ -46,16 +46,18 @@ Route::namespace('App\Http\Controllers')->middleware('auth')->group(function () 
     //               الاعدادات العامة
     //************************************************
 
-    route::resource('pharma', 'PharmaController')->middleware('admin');
-    route::resource('pharmacy', 'PharmacyController')->middleware('pharma');
-    route::resource('medicine', 'MedicineController')->middleware('pharma');
-    route::resource('order', 'OrderController')->middleware('pharma');
-    route::get('/acceptable', 'OrderController@acceptable')->name('acceptable')->middleware('pharma');
-    route::get('/rejected', 'OrderController@rejected')->name('rejected')->middleware('pharma');
+    route::resource('pharmacy', 'PharmacyController')->middleware('admin');
+    route::resource('clinic', 'ClinicController')->middleware('admin');
+    route::resource('company', 'CompanyController')->middleware('admin');
 
-    route::get('acceptable/{id}', 'OrderController@order_Acceptance')->name('order.Acceptance')->middleware('pharma');
-    route::get('rejected/{id}', 'OrderController@order_reject')->name('order.reject')->middleware('pharma');
 
-    route::get('report/pharma', 'ReportController@report_pharma')->name('report.pharma')->middleware('admin');
-    route::get('report/medicine', 'ReportController@report_medicine')->name('report.medicine')->middleware('pharma');
+    route::get('select', 'CompanyController@select')->name('company.select')->middleware('clinic');
+    route::get('select/{id}', 'CompanyController@select_post')->name('company.select.post')->middleware('clinic');
+    route::get('select/delete/{id}', 'CompanyController@select_delete_post')->name('company.select.delete.post')->middleware('clinic');
+    route::resource('doctor', 'DoctorController')->middleware('clinic');
+
+
+
+    route::get('report/pharmacy', 'ReportController@report_pharmacy')->name('report.pharmacy')->middleware('admin');
+    route::get('report/clinic', 'ReportController@report_clinic')->name('report.clinic')->middleware('admin');
 });

@@ -2,7 +2,7 @@
 {{-- @section('title','كل الاقســـــام') --}}
 @section('report_open','menu-open')
 @section('report','active')
-@section('report_pharma','active')
+@section('report_pharmacy','active')
 
 
 
@@ -24,34 +24,27 @@
                   <th>#</th>
                   <th>اسم الصيدلية </th>
                   <th> الموقع </th>
-                  <th>عدد الادوية</th>
+                  <th>البريد الالكتروني</th>
 
                   {{-- <th>العمليات</th> --}}
                 </tr>
                 </thead>
                 <tbody>
 
-                    @php
-                        $counter = 0;
-                    @endphp
-                    @foreach ($pharmas as $item)
+
+                    @foreach ($pharmacy as $item)
                         <tr>
                             <td>{{$index++}}</td>
                             <td>{{$item->name}}</td>
-                            <td>{{$item->addres}}</td>
+                            <td>{{$item->address}}</td>
+                            <td>{{$item->user->email}}</td>
 
-                            <td>{{$item->medicines->count()}}</td>
 
-                            @php
-                                $counter += $item->medicines->count();
-                            @endphp
+
                         </tr>
                     @endforeach
 
-                    <tr>
-                        <td colspan="3"> عدد الادوية الكلي</td>
-                        <td>{{$counter}}</td>
-                    </tr>
+
 
 
 

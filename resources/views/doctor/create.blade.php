@@ -1,8 +1,8 @@
 @extends('layouts.app')
 {{-- @section('title','إضافة قسم جديد') --}}
-@section('pharma_open','menu-open')
-@section('pharma','active')
-@section('pharma_create','active')
+@section('doctor_open','menu-open')
+@section('doctor','active')
+@section('doctor_create','active')
 @section('content')
 
 <section class="content">
@@ -13,41 +13,44 @@
                 <!-- Horizontal Form -->
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title">إضافة صيدلية جديدة</h3>
+                        <h3 class="card-title">إضافة  طبيب جديد</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form method="POST" action="{{route('pharma.store')}}" class="form-horizontal">
+                    <form method="POST" action="{{route('doctor.store')}}" class="form-horizontal">
                         @csrf
                         <div class="card-body">
 
                             <div class="form-group row">
-                                <label class="col-sm-2 control-label">اسم الصيدلية </label>
+                                <label class="col-sm-2 control-label">اسم الطبيب </label>
                                 <div class="col-sm-10">
                                     <input required type="text" class="form-control" name="name">
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label class="col-sm-2 control-label"> البريد الالكتروني </label>
-                                <div class="col-sm-10">
-                                    <input required type="email" class="form-control" name="email">
-                                </div>
-                            </div>
+
 
                             <div class="form-group row">
-                                <label class="col-sm-2 control-label"> كلمة المرور  </label>
+                                <label class="col-sm-2 control-label"> التخصص  </label>
                                 <div class="col-sm-10">
-                                    <input required type="password" class="form-control" name="password">
+                                    <select name="section" class="form-control">
+                                        <option value="باطنية">باطنية</option>
+                                        <option value="عظام">عظام</option>
+                                        <option value="عمومي">عمومي</option>
+                                        <option value="جراحة">جراحة</option>
+                                        <option value="اسنان">اسنان</option>
+                                        <option value="انف و اذن">انف و اذن</option>
+                                    </select>
                                 </div>
                             </div>
 
                              <div class="form-group row">
-                                <label class="col-sm-2 control-label">الموقع</label>
+                                <label class="col-sm-2 control-label"> سعر المقابلة   </label>
                                 <div class="col-sm-10">
-                                    <input required type="text" class="form-control" name="addres">
+                                    <input required type="number" class="form-control" name="price">
                                 </div>
                             </div>
+
 
                             <!-- /.card-body -->
                             <div class="card-footer">

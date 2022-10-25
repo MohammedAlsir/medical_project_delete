@@ -1,8 +1,8 @@
 @extends('layouts.app')
 {{-- @section('title','إضافة قسم جديد') --}}
-@section('medicine_open','menu-open')
-@section('medicine','active')
-@section('medicine_create','active')
+@section('clinic_open','menu-open')
+@section('clinic','active')
+@section('clinic_create','active')
 @section('content')
 
 <section class="content">
@@ -13,49 +13,41 @@
                 <!-- Horizontal Form -->
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title">إضافة دواء جديد</h3>
+                        <h3 class="card-title">إضافة عيادة جديدة</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form method="POST" action="{{route('medicine.store')}}" class="form-horizontal">
+                    <form method="POST" action="{{route('clinic.store')}}" class="form-horizontal">
                         @csrf
                         <div class="card-body">
 
                             <div class="form-group row">
-                                <label class="col-sm-2 control-label">الاسم</label>
+                                <label class="col-sm-2 control-label">اسم العيادة </label>
                                 <div class="col-sm-10">
                                     <input required type="text" class="form-control" name="name">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-sm-2 control-label">  الشركة </label>
+                                <label class="col-sm-2 control-label">  الموقع </label>
                                 <div class="col-sm-10">
-                                    <input required type="text" class="form-control" name="company">
+                                    <input required type="text" class="form-control" name="address">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-sm-2 control-label">تاريخ الانتهاء</label>
+                                <label class="col-sm-2 control-label"> البريد الالكتروني </label>
                                 <div class="col-sm-10">
-                                    <input required type="date" class="form-control" name="expaire_date">
+                                    <input required type="email" class="form-control" name="email">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-sm-2 control-label">سعر الحبة</label>
+                                <label class="col-sm-2 control-label"> كلمة المرور  </label>
                                 <div class="col-sm-10">
-                                    <input required type="number" class="form-control" name="price">
-                                </div>
-                            </div> 
-
-                            <div class="form-group row">
-                                <label class="col-sm-2 control-label">الكمية</label>
-                                <div class="col-sm-10">
-                                    <input required type="number" class="form-control" name="amount">
+                                    <input required type="password" class="form-control" name="password">
                                 </div>
                             </div>
-
 
 
                             <!-- /.card-body -->

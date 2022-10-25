@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('level');
             $table->string('photo')->nullable();
             $table->rememberToken();
+            $table->foreignId('company_id')->nullable()->constrained('companies')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

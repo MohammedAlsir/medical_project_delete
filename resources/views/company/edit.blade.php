@@ -1,7 +1,7 @@
 @extends('layouts.app')
 {{-- @section('title','بيانات القسم') --}}
-@section('medicine_open','menu-open')
-@section('medicine','active')
+@section('company_open','menu-open')
+@section('company','active')
 @section('content')
 
 <section class="content">
@@ -12,50 +12,54 @@
                 <!-- Horizontal Form -->
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title"> تعديل بيانات الدواء </h3>
+                        <h3 class="card-title"> تعديل بيانات العيادة </h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form method="POST" action="{{route('medicine.update',$item->id)}}" class="form-horizontal">
+                    <form method="POST" action="{{route('company.update',$item->id)}}" class="form-horizontal">
                         @csrf
                         @method('put')
                         <div class="card-body">
 
+
                             <div class="form-group row">
-                                <label class="col-sm-2 control-label">الاسم  </label>
+                                <label class="col-sm-2 control-label">اسم الشركة </label>
                                 <div class="col-sm-10">
                                     <input required type="text" value="{{$item->name}}" class="form-control" name="name">
                                 </div>
                             </div>
 
-                             <div class="form-group row">
-                                <label class="col-sm-2 control-label">  الشركة </label>
+                            <div class="form-group row">
+                                <label class="col-sm-2 control-label">  الموقع </label>
                                 <div class="col-sm-10">
-                                    <input required type="text" value="{{$item->company}}" class="form-control" name="company">
-                                </div>
-                            </div>
-
-
-                             <div class="form-group row">
-                                <label class="col-sm-2 control-label">تاريخ الانتهاء</label>
-                                <div class="col-sm-10">
-                                    <input required type="date" value="{{$item->expaire_date}}" class="form-control" name="expaire_date">
+                                    <input required type="text" value="{{$item->address}}" class="form-control" name="address">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-sm-2 control-label">سعر الحبة</label>
+                                <label class="col-sm-2 control-label">الهاتف </label>
                                 <div class="col-sm-10">
-                                    <input required type="number" value="{{$item->price}}" class="form-control" name="price">
+                                    <input required type="number" value="{{$item->phone}}" class="form-control" name="phone">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 control-label"> نوع التأمين </label>
+                                <div class="col-sm-10">
+                                    <select name="type" class="form-control">
+                                        <option  {{$item->type == "افرد" ? 'selected':''}} value="افراد">افراد</option>
+                                        <option  {{$item->type == "شركات" ? 'selected':''}} value="شركات">شركات</option>
+                                    </select>
                                 </div>
                             </div>
 
                              <div class="form-group row">
-                                <label class="col-sm-2 control-label">الكمية</label>
+                                <label class="col-sm-2 control-label"> نسبة التخفيض  </label>
                                 <div class="col-sm-10">
-                                    <input required type="number" value="{{$item->amount}}" class="form-control" name="amount">
+                                    <input required type="number" value="{{$item->discount}}" class="form-control" name="discount">
                                 </div>
                             </div>
+
 
                             <!-- /.card-body -->
                             <div class="card-footer">

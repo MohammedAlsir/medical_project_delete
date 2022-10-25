@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\User;
 use App\Traits\ApiMessage;
 use Illuminate\Http\Request;
@@ -46,6 +47,7 @@ class AuthController extends Controller
             'email'     => 'required',
             'password'  => 'required',
             'name'  => 'required',
+            'company_id'  => 'required',
             'level' => ''
         ]);
 
@@ -64,6 +66,12 @@ class AuthController extends Controller
 
         //
         // return $this->login(request());
+    }
+
+    public function company()
+    {
+        $company = Company::all();
+        return $this->returnData('company', $company);
     }
 
     public function profile(Request $request)

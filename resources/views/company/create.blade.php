@@ -1,8 +1,8 @@
 @extends('layouts.app')
 {{-- @section('title','إضافة قسم جديد') --}}
-@section('pharmacy_open','menu-open')
-@section('pharmacy','active')
-@section('pharmacy_create','active')
+@section('company_open','menu-open')
+@section('company','active')
+@section('company_create','active')
 @section('content')
 
 <section class="content">
@@ -13,16 +13,16 @@
                 <!-- Horizontal Form -->
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title">إضافة صيدلية جديدة</h3>
+                        <h3 class="card-title">إضافة شركة تأمين جديدة</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form method="POST" action="{{route('pharmacy.store')}}" class="form-horizontal">
+                    <form method="POST" action="{{route('company.store')}}" class="form-horizontal">
                         @csrf
                         <div class="card-body">
 
                             <div class="form-group row">
-                                <label class="col-sm-2 control-label">اسم الصيدلية </label>
+                                <label class="col-sm-2 control-label">اسم الشركة </label>
                                 <div class="col-sm-10">
                                     <input required type="text" class="form-control" name="name">
                                 </div>
@@ -36,16 +36,26 @@
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-sm-2 control-label"> البريد الالكتروني </label>
+                                <label class="col-sm-2 control-label">الهاتف </label>
                                 <div class="col-sm-10">
-                                    <input required type="email" class="form-control" name="email">
+                                    <input required type="number" class="form-control" name="phone">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-sm-2 control-label"> كلمة المرور  </label>
+                                <label class="col-sm-2 control-label"> نوع التأمين </label>
                                 <div class="col-sm-10">
-                                    <input required type="password" class="form-control" name="password">
+                                    <select name="type" class="form-control">
+                                        <option value="افراد">افراد</option>
+                                        <option value="شركات">شركات</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                             <div class="form-group row">
+                                <label class="col-sm-2 control-label"> نسبة التخفيض  </label>
+                                <div class="col-sm-10">
+                                    <input required type="number" class="form-control" name="discount">
                                 </div>
                             </div>
 

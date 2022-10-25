@@ -18,13 +18,20 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api'], func
 
     Route::post('login', 'AuthController@login'); // == Login ==
     Route::post('register', 'AuthController@register'); // == Login ==
+    Route::get('company', 'AuthController@company'); // == Login ==
 
     // == This routes user must be logged in ==
     Route::group(['middleware' => ['auth:api']], function () {
 
-        Route::get('medicine', 'OprationController@get_medicine');
-        Route::post('order', 'OprationController@order');
-        Route::get('order', 'OprationController@get_order');
+        Route::get('clinic', 'OprationController@get_clinic');
+        Route::get('clinic/{id}/doctors', 'OprationController@get_doctor_by_id');
+
+        Route::get('clinic/{id}/doctors', 'OprationController@get_doctor_by_id');
+
+        Route::post('reservation', 'ReservationController@reservation'); // == Login ==
+
+
+
 
         Route::post('profile', 'AuthController@profile');
     });

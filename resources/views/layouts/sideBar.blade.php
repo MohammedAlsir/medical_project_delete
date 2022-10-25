@@ -33,8 +33,58 @@
                         </li>
 
                         @if (Auth::user()->level == "1")
-                            <li class="nav-item has-treeview  @yield('pharma_open')">
-                                <a href="#" class="nav-link @yield('pharma')">
+                            <li class="nav-item has-treeview  @yield('company_open')">
+                                <a href="#" class="nav-link @yield('company')">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    شركات التـأمين
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                                </a>
+                                <ul class="nav nav-treeview" >
+                                    <li class="nav-item">
+                                        <a href="{{route('company.index')}}" class="nav-link @yield('company_index')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>كل الشركات</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('company.create')}}" class="nav-link @yield('company_create')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>إضافة شركة جديدة</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <li class="nav-item has-treeview  @yield('clinic_open')">
+                                <a href="#" class="nav-link @yield('clinic')">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    العيادات
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                                </a>
+                                <ul class="nav nav-treeview" >
+                                    <li class="nav-item">
+                                        <a href="{{route('clinic.index')}}" class="nav-link @yield('clinic_index')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>كل العيادات</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('clinic.create')}}" class="nav-link @yield('clinic_create')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>إضافة عيادة جديدة</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <li class="nav-item has-treeview  @yield('pharmacy_open')">
+                                <a href="#" class="nav-link @yield('pharmacy')">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     الصيدليات
@@ -43,13 +93,13 @@
                                 </a>
                                 <ul class="nav nav-treeview" >
                                     <li class="nav-item">
-                                        <a href="{{route('pharma.index')}}" class="nav-link @yield('pharma_index')">
+                                        <a href="{{route('pharmacy.index')}}" class="nav-link @yield('pharmacy_index')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>كل الصيدليات</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{route('pharma.create')}}" class="nav-link @yield('pharma_create')">
+                                        <a href="{{route('pharmacy.create')}}" class="nav-link @yield('pharmacy_create')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>إضافة صيدلية جديدة</p>
                                         </a>
@@ -69,7 +119,14 @@
                                 <ul class="nav nav-treeview" >
 
                                     <li class="nav-item">
-                                        <a href="{{route('report.pharma')}}" class="nav-link @yield('report_pharma')">
+                                        <a href="{{route('report.clinic')}}" class="nav-link @yield('report_clinic')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>العيادات</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="{{route('report.pharmacy')}}" class="nav-link @yield('report_pharmacy')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>الصيدليات</p>
                                         </a>
@@ -81,90 +138,45 @@
                         @endif
 
                         @if (Auth::user()->level == "2")
-                            {{-- <li class="nav-item has-treeview  @yield('pharmacy_open')">
-                                <a href="#" class="nav-link @yield('pharmacy')">
+
+                            <li class="nav-item">
+                                <a href="{{route('company.select')}}" class="nav-link @yield('select')">
+                                <i class="nav-icon  fas fa-th"></i>
+                                <p>
+                                    شركات التأمين
+                                </p>
+                                </a>
+                            </li>
+
+                              <li class="nav-item has-treeview  @yield('doctor_open')">
+                                <a href="#" class="nav-link @yield('doctor')">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
-                                    الصيادلة
+                                    الاطباء
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                                 </a>
                                 <ul class="nav nav-treeview" >
                                     <li class="nav-item">
-                                        <a href="{{route('pharmacy.index')}}" class="nav-link @yield('pharmacy_index')">
+                                        <a href="{{route('doctor.index')}}" class="nav-link @yield('doctor_index')">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>كل الصيادلة</p>
+                                        <p>كل الاطباء</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{route('pharmacy.create')}}" class="nav-link @yield('pharmacy_create')">
+                                        <a href="{{route('doctor.create')}}" class="nav-link @yield('doctor_create')">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>إضافة صيدلي جديد</p>
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </li> --}}
-
-                             <li class="nav-item has-treeview  @yield('medicine_open')">
-                                <a href="#" class="nav-link @yield('medicine')">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    الادوية
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                                </a>
-                                <ul class="nav nav-treeview" >
-                                    <li class="nav-item">
-                                        <a href="{{route('medicine.index')}}" class="nav-link @yield('medicine_index')">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>كل الادوية</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{route('medicine.create')}}" class="nav-link @yield('medicine_create')">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>إضافة دواء جديد</p>
+                                        <p>إضافة طبيب جديد</p>
                                         </a>
                                     </li>
 
                                 </ul>
                             </li>
 
-                            <li class="nav-item has-treeview  @yield('order_open')">
-                                <a href="#" class="nav-link @yield('order')">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    الطلبات
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                                </a>
-                                <ul class="nav nav-treeview" >
 
-                                    <li class="nav-item">
-                                        <a href="{{route('order.index')}}" class="nav-link @yield('order_index')">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>الطلبات الجديدة</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{route('acceptable')}}" class="nav-link @yield('acceptable')">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>الطلبات المقبولة</p>
-                                        </a>
-                                    </li>
 
-                                    <li class="nav-item">
-                                        <a href="{{route('rejected')}}" class="nav-link @yield('rejected')">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>الطلبات المرفوضة </p>
-                                        </a>
-                                    </li>
 
-                                </ul>
-                            </li>
-
-                             <li class="nav-item has-treeview  @yield('report_open')">
+                             {{-- <li class="nav-item has-treeview  @yield('report_open')">
                                 <a href="#" class="nav-link @yield('report')">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
@@ -183,7 +195,7 @@
 
 
                                 </ul>
-                            </li>
+                            </li> --}}
 
                         @endif
 
